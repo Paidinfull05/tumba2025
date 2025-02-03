@@ -13,8 +13,8 @@ app.use(cors());
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-}).then(() => console.log("MongoDB connected"))
-.catch(err => console.error(err));
+}).then(() => console.log("✅ MongoDB connected"))
+.catch(err => console.error("❌ MongoDB Connection Error:", err));
 
 // User schema
 const UserSchema = new mongoose.Schema({
@@ -39,6 +39,8 @@ const verifyToken = (req, res, next) => {
         res.status(400).json({ message: "Invalid Token" });
     }
 };
+
+// ** Fix: Use "/api" for routes **
 
 // Admin login
 app.post("/api/admin/login", (req, res) => {
