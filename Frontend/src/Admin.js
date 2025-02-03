@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const API_URL = "https://your-vercel-backend.vercel.app/api"; // Change this
+
 const Admin = () => {
     const [username, setUsername] = useState("");
     const [action, setAction] = useState("grant");
@@ -11,7 +13,7 @@ const Admin = () => {
 
         try {
             const res = await axios.post(
-                "https://your-vercel-backend-url.vercel.app/api/admin/manage",
+                `${API_URL}/admin/manage`,
                 { username, action },
                 { headers: { Authorization: token } }
             );
