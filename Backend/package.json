@@ -1,19 +1,20 @@
 {
-  "name": "stream-access-backend",
+  "name": "stream-access-frontend",
   "version": "1.0.0",
-  "description": "Backend for stream access control",
-  "main": "api/index.js",
-  "scripts": {
-    "start": "node api/index.js",
-    "vercel-build": "node api/index.js"
-  },
+  "description": "Frontend for stream access control",
+  "private": true,
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.0.3"
+    "axios": "^1.3.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.11.1",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "engines": {
     "node": "18.x"
