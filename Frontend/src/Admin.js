@@ -4,24 +4,27 @@ import axios from "axios";
 const Admin = () => {
     const [username, setUsername] = useState("");
     const [action, setAction] = useState("grant");
+    const [message, setMessage] = useState("");
 
     const manageAccess = async () => {
         const token = localStorage.getItem("adminToken");
+
         try {
-            await axios.post(
-                "http://localhost:5000/admin/manage",
+            const res = await axios.post(
+                "https://your-vercel-backend-url.vercel.app/api/admin/manage",
                 { username, action },
                 { headers: { Authorization: token } }
             );
-            alert(`Access ${action}ed`);
+            setMessage(res.data.message);
         } catch (error) {
-            alert("Action failed");
+            setMessage("Action failed.");
         }
     };
 
     return (
         <div>
             <h2>Admin Panel</h2>
+            {message && <p>{message}</p>}
             <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
             <select onChange={(e) => setAction(e.target.value)}>
                 <option value="grant">Grant</option>
