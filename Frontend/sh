@@ -1,2 +1,7 @@
 cd frontend
 npm install
+
+git add package.json package-lock.json
+git commit -m "Fix dependencies"
+git push origin main
+vercel --prod
