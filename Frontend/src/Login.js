@@ -4,20 +4,29 @@ import axios from "axios";
 const Login = ({ setToken }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     const handleLogin = async () => {
         try {
-            const res = await axios.post("http://localhost:5000/login", { username, password });
+            const res = await axios.post("https://your-vercel-backend-url.vercel.app/api/login", {
+                username,
+                password,
+                device: navigator.userAgent, // Capture device info
+                ip: await fetch("https://api64.ipify.org?format=json").then(res => res.json()).then(data => data.ip)
+            });
+
             setToken(res.data.token);
+            localStorage.setItem("token", res.data.token);
             window.location.href = res.data.streamUrl;
         } catch (error) {
-            alert("Login failed");
+            setError("Login failed. Check your credentials.");
         }
     };
 
     return (
         <div>
             <h2>Login</h2>
+            {error && <p style={{ color: "red" }}>{error}</p>}
             <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
             <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
             <button onClick={handleLogin}>Login</button>
