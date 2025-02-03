@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const API_URL = "https://your-vercel-backend.vercel.app/api"; // Change this
+
 const Login = ({ setToken }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -8,7 +10,7 @@ const Login = ({ setToken }) => {
 
     const handleLogin = async () => {
         try {
-            const res = await axios.post("https://your-vercel-backend-url.vercel.app/api/login", {
+            const res = await axios.post(`${API_URL}/login`, {
                 username,
                 password,
                 device: navigator.userAgent, // Capture device info
